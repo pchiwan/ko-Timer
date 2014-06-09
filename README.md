@@ -39,12 +39,13 @@ Optional array of integer time marks (in seconds) that must trigger a `timeMarkH
 As of now, the timer only has two methods.
 
 ### __start__
-Starts the timer.
+Starts the timer. If the timer had been stopped the countdown will pick up from where it left off.
 
 ### __stop__
 Stops the timer.
 
-What, were you expecting anything different?
+### __reset__
+Resets the timer. You can optionally provide a parameter with the new time limit; otherwise the time limit provided on instatiation will be used.
 
 
 # Events

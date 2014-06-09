@@ -71,6 +71,7 @@ function koTimer (timeLimit, options) {
     //timer defaults
     options = $.extend({}, defaultOptions, options);
 
+    ////// private methods
     function padLeft (number, length) {
 	    var str = number.toString();
 	    var clen = str.length;
@@ -84,8 +85,7 @@ function koTimer (timeLimit, options) {
     function toMinutesSeconds (date) {
     	return padLeft(date.getMinutes(), 2) + ':' + padLeft(date.getSeconds(), 2);
     }
-
-    //private method
+    
     function tick () {
         if (!stopped) {
             timeLeft(timeLeft() - 1);
@@ -119,11 +119,11 @@ function koTimer (timeLimit, options) {
         }
     };
 
-    //public methods
+    ////// public methods
     this.start = function () {
+        /// <summary>Starts the timer.</summary>
+
         if (!started) {
-            //recalculate remaining time just in case
-            timeLeft(timeLimit);
             started = true;
             stopped = false;
             tick();
@@ -131,10 +131,22 @@ function koTimer (timeLimit, options) {
     };
 
     this.stop = function () {
+        /// <summary>Stops the timer.</summary>
+
         if (started) {
             stopped = true;
             started = false;
         }
+    };
+
+    this.reset = function (newTimeLimit) {
+        /// <summary>Resets the timer.</summary>
+        /// <param name="newTimeLimit" type="Integer">Optional. Provide a new time limit for the timer, otherwise the one provided on instatiation will be used.</param>
+        
+        started = false;
+        timeLimit = !!newTimeLimit ? newTimeLimit : timeLimit;
+        timeLeft(timeLimit);
+        self.start();
     };
 
     //init
