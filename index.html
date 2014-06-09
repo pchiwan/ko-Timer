@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ko-Timer by pchiwan</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>ko-Timer</h1>
+        <p>A Javascript Timer that you can bind to any DOM object</p>
+        <p class="view"><a href="https://github.com/pchiwan/ko-Timer">View the Project on GitHub <small>pchiwan/ko-Timer</small></a></p>
+        <ul>
+          <li><a href="https://github.com/pchiwan/ko-Timer/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pchiwan/ko-Timer/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pchiwan/ko-Timer">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="ko-timer" class="anchor" href="#ko-timer"><span class="octicon octicon-link"></span></a>ko-Timer</h1>
+
+<p>A Javascript Timer that you can bind to any DOM object.</p>
+
+<h1>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>Need to display a timer on your page? I'd say it's a pretty common necessity. And it's certainly easy to implement your own timer; plus there are many ways to accomplish this! There's only one constant: you will have to refresh it every second, which means changing/updating the DOM. So I thought why not do it with KnockoutJS: an observable will take care of updating the DOM for me.</p>
+
+<p>Here it is then, a really simple Timer implemented with KnockoutJS (which means you WILL NEED to include KnockoutJS to your project in order for the timer to work).</p>
+
+<p>NOTE: Further versions will also provide a chrono mode -whereas, as of now, the timer only provides a countdown mode-.</p>
+
+<h1>
+<a name="how-does-it-work" class="anchor" href="#how-does-it-work"><span class="octicon octicon-link"></span></a>How does it work?</h1>
+
+<p>It's extremely easy! You instantiate a timer object like this.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">koTimer</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span> 
+</pre></div>
+
+<p>Just like that, and your timer is already running! The first parameter  is the time limit in seconds (so, in this example, 300 seconds = 5 minutes). If you don't provide it the default time limit is 60 seconds. You can also provide any of the following options.</p>
+
+<h2>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<h3>
+<a name="wait" class="anchor" href="#wait"><span class="octicon octicon-link"></span></a><strong>wait</strong>
+</h3>
+
+<p>The timer will start running upon instantiation unless you tell it otherwise. If you send <code>wait: true</code> the timer will not start running until you call its <code>start</code> method. False by default.</p>
+
+<h3>
+<a name="keepgoing" class="anchor" href="#keepgoing"><span class="octicon octicon-link"></span></a><strong>keepGoing</strong>
+</h3>
+
+<p>This should be a Knockout observable, a Knockout computed observable or a delegate function that will be used to check whether the timer must keep going or stop after each tick.</p>
+
+<h3>
+<a name="callback" class="anchor" href="#callback"><span class="octicon octicon-link"></span></a><strong>callback</strong>
+</h3>
+
+<p>Optional callback function that will be executed when the countdown reaches zero.</p>
+
+<h3>
+<a name="notifytimemarks" class="anchor" href="#notifytimemarks"><span class="octicon octicon-link"></span></a><strong>notifyTimeMarks</strong>
+</h3>
+
+<p>Optional array of integer time marks (in seconds) that must trigger a <code>timeMarkHit</code> event from the timer when hit.</p>
+
+<h1>
+<a name="methods" class="anchor" href="#methods"><span class="octicon octicon-link"></span></a>Methods</h1>
+
+<p>As of now, the timer only has two methods.</p>
+
+<h3>
+<a name="start" class="anchor" href="#start"><span class="octicon octicon-link"></span></a><strong>start</strong>
+</h3>
+
+<p>Starts the timer.</p>
+
+<h3>
+<a name="stop" class="anchor" href="#stop"><span class="octicon octicon-link"></span></a><strong>stop</strong>
+</h3>
+
+<p>Stops the timer.</p>
+
+<p>What, were you expecting anything different?</p>
+
+<h1>
+<a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>Events</h1>
+
+<p>The <code>koTimer</code> notifies some events that you can bind to. </p>
+
+<h3>
+<a name="timeisup" class="anchor" href="#timeisup"><span class="octicon octicon-link"></span></a><strong>TimeIsUp</strong>
+</h3>
+
+<p>This event is triggered when the countdown reaches zero.</p>
+
+<h3>
+<a name="timerstopped" class="anchor" href="#timerstopped"><span class="octicon octicon-link"></span></a><strong>TimerStopped</strong>
+</h3>
+
+<p>This event is triggered when the timer is stopped because the <code>keepGoing</code> condition wasn't met. If you stop the timer by calling the <code>stop</code> method this event is not triggered.</p>
+
+<h3>
+<a name="timemarkhit" class="anchor" href="#timemarkhit"><span class="octicon octicon-link"></span></a><strong>TimeMarkHit</strong>
+</h3>
+
+<p>Whenever a time mark provided in the <code>notifyTimeMarks</code> array is hit, this event is triggered. The event data includes a property called <code>timeElapsed</code>, the name of which speaks for itself. What could this be useful for? Keep reading and find out.</p>
+
+<h1>
+<a name="properties" class="anchor" href="#properties"><span class="octicon octicon-link"></span></a>Properties</h1>
+
+<p>The <code>koTimer</code> has the following properties exposed for you.</p>
+
+<h3>
+<a name="timeelapsed" class="anchor" href="#timeelapsed"><span class="octicon octicon-link"></span></a>TimeElapsed</h3>
+
+<p>A computed observable which tells you how much time has already gone by, in seconds.</p>
+
+<h3>
+<a name="timeelapsedstr" class="anchor" href="#timeelapsedstr"><span class="octicon octicon-link"></span></a>TimeElapsedStr</h3>
+
+<p>A computed observable which returns a nicely formatted string representing the time that's already gone by.</p>
+
+<h3>
+<a name="timeleftstr" class="anchor" href="#timeleftstr"><span class="octicon octicon-link"></span></a>TimeLeftStr</h3>
+
+<p>A computed observable which returns a nicely formatted string representing the time that's left.</p>
+
+<h3>
+<a name="events-1" class="anchor" href="#events-1"><span class="octicon octicon-link"></span></a>Events</h3>
+
+<p>You don't need to memorize the names of the events you want to bind to, you can access the timer's events dictionary.</p>
+
+<ul>
+<li>TimeIsUp</li>
+<li>TimerStopped</li>
+<li>TimeMarkHit</li>
+</ul><h1>
+<a name="but-really-how-do-i-use-it" class="anchor" href="#but-really-how-do-i-use-it"><span class="octicon octicon-link"></span></a>But really, how do I use it?</h1>
+
+<p>Yeah, I guess by now you're asking yourself just that. The idea is that you bind your DOM to the timer's exposed properties, and the magic of KnockoutJS will deal with updating the DOM as the countdown goes on. Have a look.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"main"</span><span class="nt">&gt;</span>    
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"timer"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">data-bind=</span><span class="s">"text: TimeLeftStr"</span><span class="nt">&gt;&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+
+<p>And here's the code that accompanies that html.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">continueCondition</span> <span class="o">=</span> <span class="nx">ko</span><span class="p">.</span><span class="nx">observable</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> <span class="c1">//the timer will stop when this is false</span>
+
+<span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">koTimer</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">wait</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nx">keepGoing</span><span class="o">:</span> <span class="nx">continueCondition</span><span class="p">,</span> 
+    <span class="nx">callback</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Timer reached zero.'</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">notifyTimeMarks</span><span class="o">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">]</span> <span class="c1">//notify event when second 150 is reached</span>
+<span class="p">});</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="nx">timer</span><span class="p">.</span><span class="nx">Events</span><span class="p">.</span><span class="nx">TimeMarkHit</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">timeElapsed</span> <span class="o">===</span> <span class="mi">150</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Halfway there'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">//apply ko binding</span>
+<span class="nx">ko</span><span class="p">.</span><span class="nx">applyBindings</span><span class="p">(</span><span class="nx">timer</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#timer'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="c1">//start timer</span>
+<span class="nx">timer</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+
+</pre></div>
+
+<p>Get it? Piece of cake, right?</p>
+
+<h1>
+<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
+
+<p>If you want to see it in action you can <strong>go play with my example jsfiddles <a href="http://jsfiddle.net/pchiwan/S8FLf/">here</a> and <a href="http://jsfiddle.net/pchiwan/25zAY/">here</a></strong>. </p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/pchiwan">pchiwan</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
