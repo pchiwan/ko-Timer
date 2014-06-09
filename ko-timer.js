@@ -49,6 +49,7 @@ function koTimer (timeLimit, options) {
     //flag to keep the timer from being started more than once
     var started = false;
     var stopped = false;
+    var timeout;
 
     //time left in seconds
     var timeLeft = ko.observable(timeLimit); 
@@ -109,7 +110,7 @@ function koTimer (timeLimit, options) {
                         });
                     }
                     //keep going!
-                    setTimeout(tick, 1000);
+                    timeout = setTimeout(tick, 1000);
                 } else {                    
                     $.event.trigger({
                     	type: self.Events.TimerStopped
@@ -135,6 +136,7 @@ function koTimer (timeLimit, options) {
         /// <summary>Stops the timer.</summary>
 
         if (started) {
+            clearTimeout(timeout);
             stopped = true;
             started = false;
         }
@@ -144,7 +146,7 @@ function koTimer (timeLimit, options) {
         /// <summary>Resets the timer.</summary>
         /// <param name="newTimeLimit" type="Integer">Optional. Provide a new time limit for the timer, otherwise the one provided on instatiation will be used.</param>
 
-        started = false;
+        self.stop();
         timeLimit = isNaN(newTimeLimit) ? timeLimit : newTimeLimit;
         timeLeft(timeLimit);
         self.start();
