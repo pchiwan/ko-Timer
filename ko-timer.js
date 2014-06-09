@@ -48,6 +48,7 @@ function koTimer (timeLimit, options) {
 
     //flag to keep the timer from being started more than once
     var started = false;
+    var stopped = false;
 
     //time left in seconds
     var timeLeft = ko.observable(timeLimit); 
@@ -55,6 +56,11 @@ function koTimer (timeLimit, options) {
     //time elapsed in seconds
     this.TimeElapsed = ko.computed(function () {
         return timeLimit - timeLeft();
+    });
+
+    //formatted time elapsed string (mm:ss)
+    this.TimeElapsedStr = ko.computed(function () {
+        return toMinutesSeconds(new Date(self.TimeElapsed() * 1000)); //instantiate Date in milliseconds
     });
 
     //formatted time left string (mm:ss)
@@ -81,34 +87,36 @@ function koTimer (timeLimit, options) {
 
     //private method
     function tick () {
-        timeLeft(timeLeft() - 1);
-        if (timeLeft() <= 0) {
-            //countdown reached zero, execute callback if there's any
-            if (!!options.callback) {
-                options.callback();
-            }
-            //now tell everyone that the time's up!
-            $.event.trigger({
-            	type: self.Events.TimeIsUp
-            })
-        }
-        else {
-            if (options.keepGoing()) {
-                //if a time mark has been hit, notify it
-                if (!!options.notifyTimeMarks && options.notifyTimeMarks.length && options.notifyTimeMarks.indexOf(self.TimeElapsed()) >= 0) {
-                    $.event.trigger({
-                    	type: self.Events.TimeMarkHit,
-                    	timeElapsed: self.TimeElapsed() 
-                    });
+        if (!stopped) {
+            timeLeft(timeLeft() - 1);
+            if (timeLeft() <= 0) {
+                //countdown reached zero, execute callback if there's any
+                if (!!options.callback) {
+                    options.callback();
                 }
-                //keep going!
-                setTimeout(tick, 1000);
-            } else {
+                //now tell everyone that the time's up!
                 $.event.trigger({
-                	type: self.Events.TimerStopped
-            	});
+                	type: self.Events.TimeIsUp
+                })
             }
-        }       
+            else {
+                if (options.keepGoing()) {
+                    //if a time mark has been hit, notify it
+                    if (!!options.notifyTimeMarks && options.notifyTimeMarks.length && options.notifyTimeMarks.indexOf(self.TimeElapsed()) >= 0) {
+                        $.event.trigger({
+                        	type: self.Events.TimeMarkHit,
+                        	timeElapsed: self.TimeElapsed() 
+                        });
+                    }
+                    //keep going!
+                    setTimeout(tick, 1000);
+                } else {
+                    $.event.trigger({
+                    	type: self.Events.TimerStopped
+                	});
+                }
+            }
+        }
     };
 
     //public methods
@@ -117,7 +125,15 @@ function koTimer (timeLimit, options) {
             //recalculate remaining time just in case
             timeLeft(timeLimit);
             started = true;
+            stopped = false;
             tick();
+        }
+    };
+
+    this.stop = function () {
+        if (started) {
+            stopped = true;
+            started = false;
         }
     };
 
