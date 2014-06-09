@@ -111,6 +111,7 @@ function koTimer (timeLimit, options) {
                     //keep going!
                     setTimeout(tick, 1000);
                 } else {
+                    stopped = true;
                     $.event.trigger({
                     	type: self.Events.TimerStopped
                 	});
@@ -142,7 +143,7 @@ function koTimer (timeLimit, options) {
     this.reset = function (newTimeLimit) {
         /// <summary>Resets the timer.</summary>
         /// <param name="newTimeLimit" type="Integer">Optional. Provide a new time limit for the timer, otherwise the one provided on instatiation will be used.</param>
-        
+
         started = false;
         timeLimit = !!newTimeLimit ? newTimeLimit : timeLimit;
         timeLeft(timeLimit);
