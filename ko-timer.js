@@ -145,7 +145,7 @@ function koTimer (timeLimit, options) {
         /// <param name="newTimeLimit" type="Integer">Optional. Provide a new time limit for the timer, otherwise the one provided on instatiation will be used.</param>
 
         started = false;
-        timeLimit = !!newTimeLimit ? newTimeLimit : timeLimit;
+        timeLimit = isNaN(newTimeLimit) ? timeLimit : newTimeLimit;
         timeLeft(timeLimit);
         self.start();
     };
