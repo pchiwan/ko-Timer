@@ -110,11 +110,11 @@ function koTimer (timeLimit, options) {
                     }
                     //keep going!
                     setTimeout(tick, 1000);
-                } else {
-                    stopped = true;
+                } else {                    
                     $.event.trigger({
                     	type: self.Events.TimerStopped
                 	});
+                    self.stop();
                 }
             }
         }
