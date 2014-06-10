@@ -45,7 +45,14 @@ Starts the timer. If the timer had been stopped the countdown will pick up from 
 Stops the timer.
 
 ### __reset__
-Resets the timer. You can optionally provide a parameter with the new time limit; otherwise the time limit provided on instatiation will be used.
+Resets the timer. You can optionally provide a parameter with the new time limit; otherwise the time limit provided on instatiation will be used. The timer will stop running when reset, if you want it to automatically start running again pass `true` as the second parameter. I.e.:
+
+```javascript
+var newTimeLimit = 240;
+
+//timer is reset with new time limit and starts running right away
+timer.reset(newTimeLimit, true); 
+```
 
 
 # Events

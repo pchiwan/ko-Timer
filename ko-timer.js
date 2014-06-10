@@ -54,6 +54,9 @@ function koTimer (timeLimit, options) {
     //time left in seconds
     var timeLeft = ko.observable(timeLimit); 
 
+    var dateLeft = new Date(timeLeft() * 1000);
+    var dateElapsed = new Date(0);
+
     //time elapsed in seconds
     this.TimeElapsed = ko.computed(function () {
         return timeLimit - timeLeft();
@@ -61,12 +64,14 @@ function koTimer (timeLimit, options) {
 
     //formatted time elapsed string (mm:ss)
     this.TimeElapsedStr = ko.computed(function () {
-        return toMinutesSeconds(new Date(self.TimeElapsed() * 1000)); //instantiate Date in milliseconds
+        dateElapsed.setTime(self.TimeElapsed() * 1000);
+        return toMinutesSeconds(dateElapsed); //instantiate Date in milliseconds
     });
 
     //formatted time left string (mm:ss)
     this.TimeLeftStr = ko.computed(function () {
-        return toMinutesSeconds(new Date(timeLeft() * 1000)); //instantiate Date in milliseconds
+        dateLeft.setTime(timeLeft() * 1000);
+        return toMinutesSeconds(dateLeft); //instantiate Date in milliseconds
     });
 
     //timer defaults
@@ -117,7 +122,7 @@ function koTimer (timeLimit, options) {
                 	});
                     self.stop();
                 }
-            }
+            }            
         }
     };
 
@@ -125,7 +130,7 @@ function koTimer (timeLimit, options) {
     this.start = function () {
         /// <summary>Starts the timer.</summary>
 
-        if (!started) {
+        if (!started) {            
             started = true;
             stopped = false;
             tick();
@@ -142,14 +147,19 @@ function koTimer (timeLimit, options) {
         }
     };
 
-    this.reset = function (newTimeLimit) {
+    this.reset = function (newTimeLimit, startTimer) {
         /// <summary>Resets the timer.</summary>
         /// <param name="newTimeLimit" type="Integer">Optional. Provide a new time limit for the timer, otherwise the one provided on instatiation will be used.</param>
+        /// <param name="startTimer" type="Boolean">Optional. Send true if you want the timer to start running right after reseting it. False by default.</param>
 
-        self.stop();
+        self.stop();        
         timeLimit = isNaN(newTimeLimit) ? timeLimit : newTimeLimit;
         timeLeft(timeLimit);
-        self.start();
+        dateLeft = new Date(timeLeft() * 1000);
+        dateElapsed = new Date(0);
+        if (startTimer instanceof Boolean && startTimer) {
+            self.start();
+        }
     };
 
     //init
