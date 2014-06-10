@@ -1,17 +1,31 @@
 @import url(http://fonts.googleapis.com/css?family=Rancho);
+header{
+	border-radius: 2px 2px 0 0;
+}
 header h1{
 	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 60px;
+	font-size: 80px;
+	text-shadow: 3px 3px #c5c5c5;
 }
 header p{
 	width: 500px;
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: bold;	
+}
+body{
+	color: #000;
+	background: none;
+	background-color: #006699;
 }
 .wrapper{
-	width: 800px;
+	width: 900px;
+	box-shadow: 14px 14px 10px 4px rgba(0, 0, 0, 0.2), 0 3px 10px rgba(0, 0, 0, 0.45);
+}
+section{
+	border-radius: 0 0 2px 2px;
 }
 section h1{
 	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 30px;
+	font-size: 40px;
+	margin-bottom: 10px;
 }
