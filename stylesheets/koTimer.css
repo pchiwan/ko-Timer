@@ -1,8 +1,17 @@
-@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Rancho);
 header h1{
-	font-family: Pacifico, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 32px;
+	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 60px;
+}
+header p{
+	width: 500px;
+	font-size: 16px;
+	font-weight: bold;
 }
 .wrapper{
 	width: 800px;
+}
+section h1{
+	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 30px;
 }
