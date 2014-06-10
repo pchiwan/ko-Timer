@@ -94,7 +94,13 @@
 <a name="reset" class="anchor" href="#reset"><span class="octicon octicon-link"></span></a><strong>reset</strong>
 </h3>
 
-<p>Resets the timer. You can optionally provide a parameter with the new time limit; otherwise the time limit provided on instatiation will be used.</p>
+<p>Resets the timer. You can optionally provide a parameter with the new time limit; otherwise the time limit provided on instatiation will be used. The timer will stop running when reset, if you want it to automatically start running again pass <code>true</code> as the second parameter. I.e.:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">newTimeLimit</span> <span class="o">=</span> <span class="mi">240</span><span class="p">;</span>
+
+<span class="c1">//timer is reset with new time limit and starts running right away</span>
+<span class="nx">timer</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="nx">newTimeLimit</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> 
+</pre></div>
 
 <h1>
 <a name="events" class="anchor" href="#events"><span class="octicon octicon-link"></span></a>Events</h1>
