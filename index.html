@@ -220,20 +220,20 @@
 <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demos</h1>
 <p>Behold! A collection of running timers!</p>
 <div class="demos">
-  <div class="demo1">
-    <a data-bind="text: timer1.TimeElapsedStr, click: timer1.toggle, visible: !timer1.IsFinished()" title="Click to toggle!"></a>
+  <div class="demo1" data-bind="click: timer1.toggle">
+    <a data-bind="text: timer1.TimeElapsedStr, visible: !timer1.IsFinished()" title="Click to toggle!"></a>
     <a data-bind="visible: timer1.IsFinished">FIN</a>
   </div>
-  <div class="demo2">
-    <a data-bind="text: timer2.TimeLeftStr, click: timer2.toggle, visible: !timer2.IsFinished()" title="Click to toggle!"></a>
+  <div class="demo2" data-bind="click: timer2.toggle">
+    <a data-bind="text: timer2.TimeLeftStr, visible: !timer2.IsFinished()" title="Click to toggle!"></a>
     <a data-bind="visible: timer2.IsFinished">FIN</a>
   </div>
-  <div class="demo3">
-    <a data-bind="text: timer3.TimeLeftStr, click: timer3.toggle, visible: !timer3.IsFinished()" title="Click to toggle!"></a>
+  <div class="demo3" data-bind="click: timer3.toggle">
+    <a data-bind="text: timer3.TimeLeftStr, visible: !timer3.IsFinished()" title="Click to toggle!"></a>
     <a data-bind="visible: timer3.IsFinished">FIN</a>
   </div>
-  <div class="demo4">
-    <a data-bind="text: timer4.TimeElapsedStr, click: timer4.toggle, visible: !timer4.IsFinished()" title="Click to toggle!"></a>
+  <div class="demo4" data-bind="click: timer4.toggle">
+    <a data-bind="text: timer4.TimeElapsedStr, visible: !timer4.IsFinished()" title="Click to toggle!"></a>
     <a data-bind="visible: timer4.IsFinished">FIN</a>
   </div>
 </div>
