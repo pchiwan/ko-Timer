@@ -101,6 +101,12 @@
 
 <p>Resets the timer. You can optionally provide a parameter with the new time limit; otherwise the time limit provided on instatiation will be used. The timer will stop running when reset, if you want it to automatically start running again pass <code>true</code> as the second parameter. I.e.:</p>
 
+<h3>
+<a name="toggle" class="anchor" href="#toggle"><span class="octicon octicon-link"></span></a><strong>toggle</strong>
+</h3>
+
+<p>Starts the timer if it's stopped, or stops it if it's running.</p>
+
 <div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">newTimeLimit</span> <span class="o">=</span> <span class="mi">240</span><span class="p">;</span>
 
 <span class="c1">//timer is reset with new time limit and starts running right away</span>
@@ -149,6 +155,11 @@
 <a name="timeleftstr" class="anchor" href="#timeleftstr"><span class="octicon octicon-link"></span></a><strong>TimeLeftStr</strong></h3>
 
 <p>A computed observable which returns a nicely formatted string representing the time that's left.</p>
+
+<h3>
+<a name="isRunning" class="anchor" href="#isRunning"><span class="octicon octicon-link"></span></a><strong>IsRunning</strong></h3>
+
+<p>A computed observable which returns <code>true</code> if the timer is running, and <code>false</code> otherwise.</p>
 
 <h3>
 <a name="events-1" class="anchor" href="#events-1"><span class="octicon octicon-link"></span></a><strong>Events</strong></h3>
