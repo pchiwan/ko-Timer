@@ -75,6 +75,10 @@ function koTimer (timeLimit, options) {
         return toMinutesSeconds(dateLeft); //instantiate Date in milliseconds
     });
 
+    this.IsRunning = ko.computed(function () {
+        return started();
+    });
+
     //timer defaults
     options = $.extend({}, defaultOptions, options);
 
@@ -134,10 +138,7 @@ function koTimer (timeLimit, options) {
         }
     };
 
-    ////// public methods and properties
-    this.isRunning = ko.computed(function () {
-        return started();
-    });
+    ////// public methods
 
     this.start = function () {
         /// <summary>Starts the timer.</summary>
