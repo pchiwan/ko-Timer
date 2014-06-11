@@ -51,6 +51,7 @@ iframe{
 	font-weight: bold; 
 	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	float: left;
+	cursor: pointer;
 }
 .demo2, .demo3, .demo4{
 	margin-left: 10px;
