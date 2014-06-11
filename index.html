@@ -216,20 +216,20 @@
 <p>Behold! A collection of running timers!</p>
 <div class="demos">
   <div class="demo1">
-    <a data-bind="text: timer1.TimeElapsedStr, click: timer1.toggle, visible: !timer.finished()" title="Click to toggle!"></a>
-    <a data-bind="visible: timer1.finished">FIN</a>
+    <a data-bind="text: timer1.TimeElapsedStr, click: timer1.toggle, visible: !timer.IsFinished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer1.IsFinished">FIN</a>
   </div>
   <div class="demo2">
-    <a data-bind="text: timer2.TimeLeftStr, click: timer2.toggle, visible: !timer2.finished()" title="Click to toggle!"></a>
-    <a data-bind="visible: timer2.finished">FIN</a>
+    <a data-bind="text: timer2.TimeLeftStr, click: timer2.toggle, visible: !timer2.IsFinished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer2.IsFinished">FIN</a>
   </div>
   <div class="demo3">
-    <a data-bind="text: timer3.TimeLeftStr, click: timer3.toggle, visible: !timer3.finished()" title="Click to toggle!"></a>
-    <a data-bind="visible: timer3.finished">FIN</a>
+    <a data-bind="text: timer3.TimeLeftStr, click: timer3.toggle, visible: !timer3.IsFinished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer3.IsFinished">FIN</a>
   </div>
   <div class="demo4">
-    <a data-bind="text: timer4.TimeElapsedStr, click: timer4.toggle, visible: !timer4.finished()" title="Click to toggle!"></a>
-    <a data-bind="visible: timer4.finished">FIN</a>
+    <a data-bind="text: timer4.TimeElapsedStr, click: timer4.toggle, visible: !timer4.IsFinished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer4.IsFinished">FIN</a>
   </div>
 </div>
 <p>And these are some examples I created on jsfiddle which you can play with.</p>
