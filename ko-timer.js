@@ -184,7 +184,7 @@ function koTimer (timeLimit, options) {
         dateLeft = new Date(timeLeft() * 1000);
         dateElapsed = new Date(0);
         finished(false);
-        if (startTimer instanceof Boolean && startTimer) {
+        if (startTimer === true) {
             self.start();
         }
     };
