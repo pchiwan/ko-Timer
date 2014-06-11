@@ -49,17 +49,16 @@ iframe{
 	text-align: center; 
 	font-size: 40px; 
 	font-weight: bold; 
-	font-family: Righteous, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	float: left;
 }
 .demo2, .demo3, .demo4{
 	margin-left: 10px;
 	background-color: #E6DB74;
-	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: Righteous, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .demo3{
 	background-color: #F92672;
-	font-size: 50px;
 	font-family: 'Gochi Hand', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .demo4{
