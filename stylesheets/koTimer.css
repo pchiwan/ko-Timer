@@ -37,6 +37,7 @@ iframe{
 }
 .demos{
 	padding-left: 30px;
+	display: inline-block;
 }
 .demo1, .demo2, .demo3, .demo4{
 	border: 1px solid #ccc; 
@@ -48,19 +49,20 @@ iframe{
 	text-align: center; 
 	font-size: 40px; 
 	font-weight: bold; 
-	font-family: 'Gochi Hand', cursive; 
+	font-family: Righteous, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	float: left;
 }
 .demo2, .demo3, .demo4{
 	margin-left: 10px;
 	background-color: #E6DB74;
-	font-family: Righteous, cursive;
+	font-family: Rancho, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .demo3{
 	background-color: #F92672;
-	font-family: Lato, arial;
+	font-size: 50px;
+	font-family: 'Gochi Hand', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .demo4{
 	background-color: #70C72E;
-	font-family: 'Sigmar One', cursive;
+	font-family: 'Sigmar One', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

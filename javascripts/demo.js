@@ -1,5 +1,5 @@
 
-var demo = (function () {
+function Demo () {
 
 	var colors = [
 		'#7CE8F9',
@@ -23,10 +23,11 @@ var demo = (function () {
 	this.timer4 = new koTimer(600, {
 		wait: true
 	});
-
-})();
+}
 
 $(document).ready(function () {
+
+	var demo = new Demo();
 
 	//init ko
 	ko.applyBindings(demo, $('.demos')[0]);
