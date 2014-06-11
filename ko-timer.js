@@ -47,8 +47,9 @@ function koTimer (timeLimit, options) {
     }                                    
 
     //flag to keep the timer from being started more than once
-    var started = false;
-    var stopped = false;
+    var started = ko.observable(false);
+    var stopped = ko.observable(false);
+    var finished = ko.observable(false);
     var timeout;
 
     //time left in seconds
@@ -92,8 +93,14 @@ function koTimer (timeLimit, options) {
     	return padLeft(date.getMinutes(), 2) + ':' + padLeft(date.getSeconds(), 2);
     }
     
+    function finish () {
+        started(false);
+        stopped(true);
+        finished(true);
+    }
+
     function tick () {
-        if (!stopped) {
+        if (!stopped()) {
             timeLeft(timeLeft() - 1);
             if (timeLeft() <= 0) {
                 //countdown reached zero, execute callback if there's any
@@ -104,6 +111,7 @@ function koTimer (timeLimit, options) {
                 $.event.trigger({
                 	type: self.Events.TimeIsUp
                 })
+                finish();
             }
             else {
                 if (options.keepGoing()) {
@@ -126,13 +134,17 @@ function koTimer (timeLimit, options) {
         }
     };
 
-    ////// public methods
+    ////// public methods and properties
+    this.isRunning = ko.computed(function () {
+        return started();
+    });
+
     this.start = function () {
         /// <summary>Starts the timer.</summary>
 
-        if (!started) {            
-            started = true;
-            stopped = false;
+        if (!started()) {            
+            started(true);
+            stopped(false);
             tick();
         }
     };
@@ -140,11 +152,24 @@ function koTimer (timeLimit, options) {
     this.stop = function () {
         /// <summary>Stops the timer.</summary>
 
-        if (started) {
+        if (started()) {
             clearTimeout(timeout);
-            stopped = true;
-            started = false;
+            started(false);
+            stopped(true);
         }
+    };
+
+    this.toggle = function () {
+        /// <summary>Starts the timer if it's stopped, stops it if it's started.</summary>
+
+        if (started()) {
+            self.stop();
+        }
+        else if (finished()) {
+            self.reset(null, true);
+        }
+        else
+            self.start();
     };
 
     this.reset = function (newTimeLimit, startTimer) {
@@ -157,6 +182,7 @@ function koTimer (timeLimit, options) {
         timeLeft(timeLimit);
         dateLeft = new Date(timeLeft() * 1000);
         dateElapsed = new Date(0);
+        finished(false);
         if (startTimer instanceof Boolean && startTimer) {
             self.start();
         }
@@ -164,7 +190,7 @@ function koTimer (timeLimit, options) {
 
     //init
     if (!options.wait) {
-        started = true;
+        started(true);
         tick();
     }
 }
