@@ -29,7 +29,7 @@ The timer will start running upon instantiation unless you tell it otherwise. If
 This should be a Knockout observable, a Knockout computed observable or a delegate function that will be used to check whether the timer must keep going or stop after each tick.
 
 ### __callback__
-Optional callback function that will be executed when the countdown reaches zero.
+Optional callback function that will be executed when the timer's countdown reaches zero.
 
 ### __notifyTimeMarks__
 Optional array of integer time marks (in seconds) that must trigger a `timeMarkHit` event from the timer when hit.
@@ -62,7 +62,7 @@ timer.reset(newTimeLimit, true);
 The `koTimer` notifies some events that you can bind to. 
 
 ### __TimeIsUp__
-This event is triggered when the countdown reaches zero.
+This event is triggered when the timer's countdown reaches zero.
 
 ### __TimerStopped__
 This event is triggered when the timer is stopped because the `keepGoing` condition wasn't met. If you stop the timer by calling the `stop` method this event is not triggered.
@@ -85,6 +85,9 @@ A computed observable which returns a nicely formatted string representing the t
 
 ### __IsRunning__
 A computed observable which returns `true` if the timer is running, and `false` otherwise.
+
+### __IsFinished__
+A computed observable which returns `true` if the timer's countdown has reached zero, and `false` otherwise.
 
 ### __Events__
 You don't need to memorize the names of the events you want to bind to, you can access the timer's events dictionary.
