@@ -215,12 +215,24 @@
 <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demos</h1>
 <p>Behold! A collection of running timers!</p>
 <div class="demos">
-  <div class="demo1"><a data-bind="text: timer1.TimeElapsedStr, click: timer1.toggle" title="Click to toggle!"></a></div>
-  <div class="demo2"><a data-bind="text: timer2.TimeLeftStr, click: timer2.toggle" title="Click to toggle!"></a></div>
-  <div class="demo3"><a data-bind="text: timer3.TimeLeftStr, click: timer3.toggle" title="Click to toggle!"></a></div>
-  <div class="demo4"><a data-bind="text: timer4.TimeElapsedStr, click: timer4.toggle" title="Click to toggle!"></a></div>
+  <div class="demo1">
+    <a data-bind="text: timer1.TimeElapsedStr, click: timer1.toggle, visible: !timer.finished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer1.finished">FIN</a>
+  </div>
+  <div class="demo2">
+    <a data-bind="text: timer2.TimeLeftStr, click: timer2.toggle, visible: !timer2.finished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer2.finished">FIN</a>
+  </div>
+  <div class="demo3">
+    <a data-bind="text: timer3.TimeLeftStr, click: timer3.toggle, visible: !timer3.finished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer3.finished">FIN</a>
+  </div>
+  <div class="demo4">
+    <a data-bind="text: timer4.TimeElapsedStr, click: timer4.toggle, visible: !timer4.finished()" title="Click to toggle!"></a>
+    <a data-bind="visible: timer4.finished">FIN</a>
+  </div>
 </div>
-<p>And these are some examples I created on jsfiddle that you can play with.</p>
+<p>And these are some examples I created on jsfiddle which you can play with.</p>
 <h3>
   <a href="#example1" class="anchor" name="example1"><span class="octicon octicon-link"></span></a>
   <strong>Example 1</strong>
