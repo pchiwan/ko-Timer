@@ -39,10 +39,13 @@ Optional array of integer time marks (in seconds) that must trigger a `timeMarkH
 As of now, the timer only has two methods.
 
 ### __start__
-Starts the timer. If the timer had been stopped the countdown will pick up from where it left off.
+Starts the timer. If the timer had been stopped, the countdown will pick up from where it left off.
 
 ### __stop__
 Stops the timer.
+
+### __toggle__
+Starts the timer if it's stopped, or stops it if it's running.
 
 ### __reset__
 Resets the timer. You can optionally provide a parameter with the new time limit; otherwise the time limit provided on instatiation will be used. The timer will stop running when reset, if you want it to automatically start running again pass `true` as the second parameter. I.e.:
@@ -71,16 +74,19 @@ Whenever a time mark provided in the `notifyTimeMarks` array is hit, this event 
 # Properties
 The `koTimer` has the following properties exposed for you.
 
-### TimeElapsed
+### __TimeElapsed__
 A computed observable which tells you how much time has already gone by, in seconds.
 
-### TimeElapsedStr
+### __TimeElapsedStr__
 A computed observable which returns a nicely formatted string representing the time that's already gone by.
 
-### TimeLeftStr
+### __TimeLeftStr__
 A computed observable which returns a nicely formatted string representing the time that's left.
 
-### Events
+### __IsRunning__
+A computed observable which returns `true` if the timer is running, and `false` otherwise.
+
+### __Events__
 You don't need to memorize the names of the events you want to bind to, you can access the timer's events dictionary.
 * TimeIsUp
 * TimerStopped

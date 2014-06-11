@@ -179,7 +179,7 @@ function koTimer (timeLimit, options) {
         /// <param name="startTimer" type="Boolean">Optional. Send true if you want the timer to start running right after reseting it. False by default.</param>
 
         self.stop();        
-        timeLimit = isNaN(newTimeLimit) ? timeLimit : newTimeLimit;
+        timeLimit = !!newTimeLimit && !isNaN(newTimeLimit) ? newTimeLimit : timeLimit;
         timeLeft(timeLimit);
         dateLeft = new Date(timeLeft() * 1000);
         dateElapsed = new Date(0);
