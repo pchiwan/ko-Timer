@@ -18,9 +18,10 @@ It's extremely easy! You instantiate a timer object like this.
 var timer = new koTimer(300); 
 ```
 
-Just like that, and your timer is already running! The first parameter  is the time limit in seconds (so, in this example, 300 seconds = 5 minutes). If you don't provide it the default time limit is 60 seconds. You can also provide any of the following options.
+Just like that, and your timer is already running! The first parameter is the time limit in seconds (so, in this example, 300 seconds = 5 minutes). If you don't provide it the default time limit is 60 seconds. 
 
-## Options
+# Configuration
+You can further configure the timer by providing it with an options dictionary upon instantiation. The available options are as follows.
 
 ### __wait__
 The timer will start running upon instantiation unless you tell it otherwise. If you send `wait: true` the timer will not start running until you call its `start` method. False by default.
