@@ -20,7 +20,7 @@ header, section, footer {
 
 a {
   color: #069;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 p {
